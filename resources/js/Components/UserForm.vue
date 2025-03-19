@@ -1,60 +1,29 @@
 <script setup>
-import { ref } from "vue";
-import { useForm } from "vee-validate";
-import { toTypedSchema } from "@vee-validate/yup";
-import { object, string } from "yup";
-import dayjs from "dayjs";
-
-const schema = toTypedSchema(
-    object({
-        firstName: string().required("First name is required"),
-        lastName: string().required("Last name is required"),
-        birthday: string().required("Birthday is required"),
-        gender: string().required("Gender is required"),
-    })
-);
-
-const { errors, defineField, handleSubmit } = useForm({
-    validationSchema: schema,
-});
-
-const [birthday, birthdayAttrs] = defineField("birthday");
-const [gender, genderAttrs] = defineField("gender");
-const [firstName, firstNameAttrs] = defineField("firstName");
-const [lastName, lastNameAttrs] = defineField("lastName");
-
-const onSubmit = handleSubmit((values) => {
-    // console.log(JSON.stringify(values, null, 2));
-});
-
-function handleDateChange(val) {
-    const formatted = dayjs(val).format("DD/MM/YYYY");
-
-    birthday.value = formatted;
-}
+import { useUserStore } from "@/store/user";
+const userStore = useUserStore();
 </script>
 
 <template>
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="userStore.onSubmit">
         <v-text-field
-            v-model="firstName"
-            v-bind="firstNameAttrs"
-            :error-messages="errors.firstName"
+            v-model="userStore.firstName"
+            v-bind="userStore.firstNameAttrs"
+            :error-messages="userStore.errors.firstName"
             label="First name"
         ></v-text-field>
 
         <v-text-field
-            v-model="lastName"
-            v-bind="lastNameAttrs"
-            :error-messages="errors.lastName"
+            v-model="userStore.lastName"
+            v-bind="userStore.lastNameAttrs"
+            :error-messages="userStore.errors.lastName"
             label="Last name"
         ></v-text-field>
 
         <v-text-field
             type="date"
-            v-model="birthday"
-            v-bind="birthdayAttrs"
-            :error-messages="errors.birthday"
+            v-model="userStore.birthday"
+            v-bind="userStore.birthdayAttrs"
+            :error-messages="userStore.errors.birthday"
             label="Birthday"
         >
         </v-text-field>
@@ -62,9 +31,9 @@ function handleDateChange(val) {
         <v-select
             label="Gender"
             :items="['Male', 'Female']"
-            v-model="gender"
-            v-bind="genderAttrs"
-            :error-messages="errors.gender"
+            v-model="userStore.gender"
+            v-bind="userStore.genderAttrs"
+            :error-messages="userStore.errors.gender"
             bg-color="white"
         ></v-select>
 

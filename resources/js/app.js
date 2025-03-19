@@ -16,6 +16,10 @@ import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 
+import { createPinia } from "pinia";
+
+const pinia = createPinia();
+
 const vuetify = createVuetify({
     components,
     directives,
@@ -33,6 +37,7 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(vuetify)
+            .use(pinia)
             .mount(el);
     },
     progress: {

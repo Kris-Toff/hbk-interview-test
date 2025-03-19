@@ -24,6 +24,7 @@
         "@mdi/font": "^7.4.47",
         "@vee-validate/yup": "^4.15.0",
         "dayjs": "^1.11.13",
+        "pinia": "^3.0.1",
         "vee-validate": "^4.15.0",
         "vuetify": "^3.7.18"
     }
