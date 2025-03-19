@@ -28,7 +28,7 @@ const props = defineProps({
                 height="50"
                 rounded="circle"
             >
-                <sheet-footer> {{ stepCount }} </sheet-footer>
+                <p>{{ stepCount }}</p>
             </v-sheet>
         </div>
 
@@ -46,8 +46,8 @@ const props = defineProps({
     <div
         class="text-center"
         :class="{
-            'active-text': activeStep,
-            'inactive-text': !activeStep,
+            'active-text': currentStep >= stepCount,
+            'inactive-text': currentStep <= stepCount,
         }"
     >
         {{ label }}

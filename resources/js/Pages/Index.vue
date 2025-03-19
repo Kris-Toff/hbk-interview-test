@@ -1,10 +1,11 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
+import UserForm from "@/Components/UserForm.vue";
 </script>
 
 <template>
     <AppLayout title="Stepper">
-        <p>index</p>
+        <user-form />
     </AppLayout>
 </template>
 
