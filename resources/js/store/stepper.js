@@ -13,6 +13,7 @@ export const useStepperStore = defineStore("stepper", () => {
     const businessStore = useBusinessStore();
     const accountStore = useAccountStore();
     const step = ref(1);
+    const errors = ref({});
 
     function next() {
         step.value++;
@@ -29,6 +30,11 @@ export const useStepperStore = defineStore("stepper", () => {
         window.history.back();
     }
 
+    function camelToUnderscore(key) {
+        var result = key.replace(/([A-Z])/g, " $1");
+        return result.split(" ").join("_").toLowerCase();
+    }
+
     function mergeObjects() {
         const arrObj = [
             userStore.values,
@@ -40,7 +46,8 @@ export const useStepperStore = defineStore("stepper", () => {
         var resultObject = arrObj.reduce(function (result, currentObject) {
             for (var key in currentObject) {
                 if (currentObject.hasOwnProperty(key)) {
-                    result[key] = currentObject[key];
+                    var underscoreKey = camelToUnderscore(key);
+                    result[underscoreKey] = currentObject[key];
                 }
             }
             return result;
@@ -58,13 +65,15 @@ export const useStepperStore = defineStore("stepper", () => {
         if (userValid && contactValid && businessValid && accountValid) {
             const payload = mergeObjects();
 
-            router.post("/stepper", payload);
-            console.log("valid");
-            console.log(userStore.values);
+            router.post("/stepper", payload, {
+                onError: (e) => {
+                    errors.value = e;
+                },
+            });
         } else {
             console.log("invalid");
         }
     }
 
-    return { step, next, prev, submit, handlePrevious };
+    return { step, next, prev, errors, submit, handlePrevious };
 });

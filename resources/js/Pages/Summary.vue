@@ -5,21 +5,12 @@ import ContactForm from "@/Components/ContactForm.vue";
 import BusinessForm from "@/Components/BusinessForm.vue";
 import AccountForm from "@/Components/AccountForm.vue";
 import { useStepperStore } from "@/store/stepper";
-import { useUserStore } from "@/store/user";
-import { useContactStore } from "@/store/contact";
-import { useBusinessStore } from "@/store/business";
-import { useAccountStore } from "@/store/account";
 import { usePageGuard } from "@/composables/usePageGuard";
 
 const { stepperGuard } = usePageGuard();
 const stepperStore = useStepperStore();
 
 stepperGuard(stepperStore.step);
-
-const userStore = useUserStore();
-const contactStore = useContactStore();
-const businessStore = useBusinessStore();
-const accountStore = useAccountStore();
 </script>
 
 <template>

@@ -13,14 +13,22 @@ const stepperStore = useStepperStore();
     <v-text-field
         v-model="accountStore.username"
         v-bind="accountStore.usernameAttrs"
-        :error-messages="accountStore.errors.username"
+        :error-messages="
+            accountStore.errors.username
+                ? accountStore.errors.username
+                : stepperStore.errors.username
+        "
         label="Username"
     ></v-text-field>
 
     <v-text-field
         v-model="accountStore.password"
         v-bind="accountStore.passwordAttrs"
-        :error-messages="accountStore.errors.password"
+        :error-messages="
+            accountStore.errors.password
+                ? accountStore.errors.password
+                : stepperStore.errors.password
+        "
         label="Password"
         :type="accountStore.showPassword ? 'text' : 'password'"
         :append-inner-icon="

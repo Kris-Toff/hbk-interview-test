@@ -13,7 +13,11 @@ const stepperStore = useStepperStore();
     <v-text-field
         v-model="contactStore.email"
         v-bind="contactStore.emailAttrs"
-        :error-messages="contactStore.errors.email"
+        :error-messages="
+            contactStore.errors.email
+                ? contactStore.errors.email
+                : stepperStore.errors.email
+        "
         label="Email"
         type="email"
     ></v-text-field>
@@ -21,8 +25,12 @@ const stepperStore = useStepperStore();
     <v-text-field
         v-model="contactStore.phoneNumber"
         v-bind="contactStore.phoneNumberAttrs"
-        :error-messages="contactStore.errors.phoneNumber"
-        label="Phone number - 10 digits"
+        :error-messages="
+            contactStore.errors.phoneNumber
+                ? contactStore.errors.phoneNumber
+                : stepperStore.errors.phone_number
+        "
+        label="Phone number"
     ></v-text-field>
 </template>
 

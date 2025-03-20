@@ -13,14 +13,22 @@ const stepperStore = useStepperStore();
     <v-text-field
         v-model="userStore.firstName"
         v-bind="userStore.firstNameAttrs"
-        :error-messages="userStore.errors.firstName"
+        :error-messages="
+            userStore.errors.firstName
+                ? userStore.errors.firstName
+                : stepperStore.errors.first_name
+        "
         label="First name"
     ></v-text-field>
 
     <v-text-field
         v-model="userStore.lastName"
         v-bind="userStore.lastNameAttrs"
-        :error-messages="userStore.errors.lastName"
+        :error-messages="
+            userStore.errors.lastName
+                ? userStore.errors.lastName
+                : stepperStore.errors.last_name
+        "
         label="Last name"
     ></v-text-field>
 
@@ -28,7 +36,11 @@ const stepperStore = useStepperStore();
         type="date"
         v-model="userStore.birthday"
         v-bind="userStore.birthdayAttrs"
-        :error-messages="userStore.errors.birthday"
+        :error-messages="
+            userStore.errors.birthday
+                ? userStore.errors.birthday
+                : stepperStore.errors.birthday
+        "
         label="Birthday"
     >
     </v-text-field>
@@ -38,7 +50,11 @@ const stepperStore = useStepperStore();
         :items="['Male', 'Female']"
         v-model="userStore.gender"
         v-bind="userStore.genderAttrs"
-        :error-messages="userStore.errors.gender"
+        :error-messages="
+            userStore.errors.gender
+                ? userStore.errors.gender
+                : stepperStore.errors.gender
+        "
         bg-color="white"
     ></v-select>
 </template>

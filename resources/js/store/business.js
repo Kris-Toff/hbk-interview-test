@@ -10,8 +10,8 @@ export const useBusinessStore = defineStore("business", () => {
 
     const schema = toTypedSchema(
         object({
-            businessName: string().required("Business name is required"),
-            businessAddress: string().required("Business address is required"),
+            name: string().required("Business name is required"),
+            address: string().required("Business address is required"),
             status: string().required("Status is required"),
             registrationDate: date().required("Registration date is required"),
             expiryDate: date().required("Expiry date date is required"),
@@ -26,9 +26,8 @@ export const useBusinessStore = defineStore("business", () => {
         validationSchema: schema,
     });
 
-    const [businessName, businessNameAttrs] = defineField("businessName");
-    const [businessAddress, businessAddressAttrs] =
-        defineField("businessAddress");
+    const [name, nameAttrs] = defineField("name");
+    const [address, addressAttrs] = defineField("address");
     const [status, statusAttrs] = defineField("status");
     const [registrationDate, registrationDateAttrs] =
         defineField("registrationDate");
@@ -49,10 +48,10 @@ export const useBusinessStore = defineStore("business", () => {
     }
 
     return {
-        businessName,
-        businessNameAttrs,
-        businessAddress,
-        businessAddressAttrs,
+        name,
+        nameAttrs,
+        address,
+        addressAttrs,
         status,
         statusAttrs,
         registrationDate,

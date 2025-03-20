@@ -14,9 +14,7 @@ export const useContactStore = defineStore("contact", () => {
     const schema = toTypedSchema(
         object({
             email: string().required("Email is required").email(),
-            phoneNumber: string()
-                .matches(phoneRegex, "Invalid phone")
-                .required("Phone number is required"),
+            phoneNumber: string().required("Phone number is required"),
         })
     );
 
