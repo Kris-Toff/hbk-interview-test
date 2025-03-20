@@ -17,7 +17,7 @@ export const useAccountStore = defineStore("account", () => {
         })
     );
 
-    const { errors, defineField, handleSubmit } = useForm({
+    const { errors, defineField, handleSubmit, values } = useForm({
         validationSchema: schema,
     });
 
@@ -44,6 +44,7 @@ export const useAccountStore = defineStore("account", () => {
         password,
         passwordAttrs,
         showPassword,
+        values,
         errors,
         handlePasswordToggle,
         handlePrevious,

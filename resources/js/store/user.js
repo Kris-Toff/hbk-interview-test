@@ -17,7 +17,7 @@ export const useUserStore = defineStore("user", () => {
         })
     );
 
-    const { errors, defineField, handleSubmit, errorBag } = useForm({
+    const { errors, defineField, handleSubmit, values } = useForm({
         validationSchema: schema,
     });
 
@@ -33,7 +33,6 @@ export const useUserStore = defineStore("user", () => {
 
     return {
         errors,
-        errorBag,
         birthday,
         birthdayAttrs,
         gender,
@@ -42,6 +41,7 @@ export const useUserStore = defineStore("user", () => {
         firstNameAttrs,
         lastName,
         lastNameAttrs,
+        values,
         onSubmit,
     };
 });

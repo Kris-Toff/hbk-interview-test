@@ -22,7 +22,7 @@ const stepperStore = useStepperStore();
         v-model="contactStore.phoneNumber"
         v-bind="contactStore.phoneNumberAttrs"
         :error-messages="contactStore.errors.phoneNumber"
-        label="Phone number"
+        label="Phone number - 10 digits"
     ></v-text-field>
 </template>
 

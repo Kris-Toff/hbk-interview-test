@@ -36,6 +36,7 @@ export const useStepperStore = defineStore("stepper", () => {
 
         if (userValid && contactValid && businessValid && accountValid) {
             console.log("valid");
+            console.log(userStore.values);
         } else {
             console.log("invalid");
         }

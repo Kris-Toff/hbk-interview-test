@@ -7,17 +7,20 @@ import { useStepperStore } from "./stepper";
 
 export const useContactStore = defineStore("contact", () => {
     const stepperStore = useStepperStore();
+    const phoneRegex = RegExp(
+        /^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+    );
 
     const schema = toTypedSchema(
         object({
             email: string().required("Email is required").email(),
-            phoneNumber: number("Phone number is should be a number").required(
-                "Phone number is required"
-            ),
+            phoneNumber: string()
+                .matches(phoneRegex, "Invalid phone")
+                .required("Phone number is required"),
         })
     );
 
-    const { errors, defineField, handleSubmit } = useForm({
+    const { errors, defineField, handleSubmit, values } = useForm({
         validationSchema: schema,
     });
 
@@ -39,6 +42,7 @@ export const useContactStore = defineStore("contact", () => {
         emailAttrs,
         phoneNumber,
         phoneNumberAttrs,
+        values,
         errors,
         handlePrevious,
         onSubmit,

@@ -11,9 +11,7 @@ const userStore = useUserStore();
 <template>
     <AppLayout title="User">
         <form @submit.prevent="userStore.onSubmit">
-            <user-form
-                v-if="stepperStore.step == 1 || stepperStore.step == 5"
-            />
+            <user-form />
 
             <div class="mt-6 d-flex justify-end" v-if="stepperStore.step != 5">
                 <v-btn type="submit"> Next </v-btn>

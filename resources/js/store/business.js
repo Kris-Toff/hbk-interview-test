@@ -22,7 +22,7 @@ export const useBusinessStore = defineStore("business", () => {
         })
     );
 
-    const { errors, defineField, handleSubmit } = useForm({
+    const { errors, defineField, handleSubmit, values } = useForm({
         validationSchema: schema,
     });
 
@@ -63,6 +63,7 @@ export const useBusinessStore = defineStore("business", () => {
         isPremiumCompanyAttrs,
         accreditationLevel,
         accreditationLevelAttrs,
+        values,
         errors,
         handlePrevious,
         onSubmit,
