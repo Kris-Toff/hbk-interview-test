@@ -8,7 +8,7 @@ const stepperStore = useStepperStore();
 const steps = ref([
     { count: 1, label: "User" },
     { count: 2, label: "Contact" },
-    { count: 3, label: "Businness Info" },
+    { count: 3, label: "Business Info" },
     { count: 4, label: "Account" },
     { count: 5, label: "Summary" },
 ]);

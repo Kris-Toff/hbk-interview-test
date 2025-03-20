@@ -5,7 +5,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', [StepperController::class, 'index']);
+Route::get('/', [StepperController::class, 'user']);
+Route::get('/contact', [StepperController::class, 'contact']);
+Route::get('/business', [StepperController::class, 'business']);
+Route::get('/account', [StepperController::class, 'account']);
+Route::get('/summary', [StepperController::class, 'summary']);
 
 Route::middleware([
     'auth:sanctum',

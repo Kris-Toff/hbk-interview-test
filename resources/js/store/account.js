@@ -3,9 +3,13 @@ import { defineStore } from "pinia";
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/yup";
 import { object, string, date } from "yup";
+import { router } from "@inertiajs/vue3";
 import { useStepperStore } from "./stepper";
 
 export const useAccountStore = defineStore("account", () => {
+    const stepperStore = useStepperStore();
+    const showPassword = ref(false);
+
     const schema = toTypedSchema(
         object({
             username: string().required("Username is required"),
@@ -20,15 +24,14 @@ export const useAccountStore = defineStore("account", () => {
     const [username, usernameAttrs] = defineField("username");
     const [password, passwordAttrs] = defineField("password");
 
-    const stepperStore = useStepperStore();
-    const showPassword = ref(false);
-
     const onSubmit = handleSubmit((v) => {
         stepperStore.next();
+        router.visit("/summary", { method: "get" });
     });
 
     function handlePrevious() {
         stepperStore.prev();
+        window.history.back();
     }
 
     function handlePasswordToggle() {

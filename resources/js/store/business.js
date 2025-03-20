@@ -2,9 +2,12 @@ import { defineStore } from "pinia";
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/yup";
 import { object, string, date, boolean } from "yup";
+import { router } from "@inertiajs/vue3";
 import { useStepperStore } from "./stepper";
 
 export const useBusinessStore = defineStore("business", () => {
+    const stepperStore = useStepperStore();
+
     const schema = toTypedSchema(
         object({
             businessName: string().required("Business name is required"),
@@ -35,14 +38,14 @@ export const useBusinessStore = defineStore("business", () => {
     const [accreditationLevel, accreditationLevelAttrs] =
         defineField("accreditationLevel");
 
-    const stepperStore = useStepperStore();
-
     const onSubmit = handleSubmit((values) => {
         stepperStore.next();
+        router.visit("/account", { method: "get" });
     });
 
     function handlePrevious() {
         stepperStore.prev();
+        window.history.back();
     }
 
     return {

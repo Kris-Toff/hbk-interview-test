@@ -2,9 +2,12 @@ import { defineStore } from "pinia";
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/yup";
 import { object, string, date } from "yup";
+import { router } from "@inertiajs/vue3";
 import { useStepperStore } from "./stepper";
 
 export const useUserStore = defineStore("user", () => {
+    const stepperStore = useStepperStore();
+
     const schema = toTypedSchema(
         object({
             firstName: string().required("First name is required"),
@@ -14,7 +17,7 @@ export const useUserStore = defineStore("user", () => {
         })
     );
 
-    const { errors, defineField, handleSubmit } = useForm({
+    const { errors, defineField, handleSubmit, errorBag } = useForm({
         validationSchema: schema,
     });
 
@@ -23,14 +26,14 @@ export const useUserStore = defineStore("user", () => {
     const [firstName, firstNameAttrs] = defineField("firstName");
     const [lastName, lastNameAttrs] = defineField("lastName");
 
-    const stepperStore = useStepperStore();
-
     const onSubmit = handleSubmit((v) => {
         stepperStore.next();
+        router.visit("/contact", { method: "get" });
     });
 
     return {
         errors,
+        errorBag,
         birthday,
         birthdayAttrs,
         gender,

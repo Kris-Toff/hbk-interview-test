@@ -47,7 +47,7 @@ const props = defineProps({
         class="text-center"
         :class="{
             'active-text': currentStep >= stepCount,
-            'inactive-text': currentStep <= stepCount,
+            'inactive-text': currentStep < stepCount,
         }"
     >
         {{ label }}
