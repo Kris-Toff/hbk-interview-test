@@ -31,4 +31,9 @@ class StepperController extends Controller
     {
         return Inertia::render('Summary');
     }
+
+    public function store(Request $request)
+    {
+        dd($request);
+    }
 }
