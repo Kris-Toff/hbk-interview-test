@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/yup";
-import { object, string } from "yup";
+import { object, string, date } from "yup";
 import { useStepperStore } from "./stepper";
 
 export const useUserStore = defineStore("user", () => {
@@ -9,7 +9,7 @@ export const useUserStore = defineStore("user", () => {
         object({
             firstName: string().required("First name is required"),
             lastName: string().required("Last name is required"),
-            birthday: string().required("Birthday is required"),
+            birthday: date().required("Birthday is required"),
             gender: string().required("Gender is required"),
         })
     );
