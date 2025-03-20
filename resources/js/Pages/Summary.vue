@@ -9,8 +9,13 @@ import { useUserStore } from "@/store/user";
 import { useContactStore } from "@/store/contact";
 import { useBusinessStore } from "@/store/business";
 import { useAccountStore } from "@/store/account";
+import { usePageGuard } from "@/composables/usePageGuard";
 
+const { stepperGuard } = usePageGuard();
 const stepperStore = useStepperStore();
+
+stepperGuard(stepperStore.step);
+
 const userStore = useUserStore();
 const contactStore = useContactStore();
 const businessStore = useBusinessStore();

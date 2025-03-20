@@ -3,8 +3,13 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import BusinessForm from "@/Components/BusinessForm.vue";
 import { useStepperStore } from "@/store/stepper";
 import { useBusinessStore } from "@/store/business";
+import { usePageGuard } from "@/composables/usePageGuard";
 
+const { stepperGuard } = usePageGuard();
 const stepperStore = useStepperStore();
+
+stepperGuard(stepperStore.step);
+
 const businessStore = useBusinessStore();
 </script>
 

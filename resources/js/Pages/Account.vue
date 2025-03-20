@@ -3,8 +3,13 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import AccountForm from "@/Components/AccountForm.vue";
 import { useStepperStore } from "@/store/stepper";
 import { useAccountStore } from "@/store/account";
+import { usePageGuard } from "@/composables/usePageGuard";
 
+const { stepperGuard } = usePageGuard();
 const stepperStore = useStepperStore();
+
+stepperGuard(stepperStore.step);
+
 const accountStore = useAccountStore();
 </script>
 
