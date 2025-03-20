@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import StepChip from "./StepChip.vue";
+import { useStepperStore } from "@/store/stepper";
+
+const stepperStore = useStepperStore();
 
 const steps = ref([
     { count: 1, label: "User" },
@@ -9,8 +12,6 @@ const steps = ref([
     { count: 4, label: "Account" },
     { count: 5, label: "Summary" },
 ]);
-
-const currentStep = ref(1);
 </script>
 
 <template>
@@ -21,7 +22,7 @@ const currentStep = ref(1);
                     :step-count="step.count"
                     :label="step.label"
                     :total-steps="steps.length"
-                    :current-step="currentStep"
+                    :current-step="stepperStore.step"
                 />
             </v-col>
         </v-row>

@@ -37,8 +37,7 @@ const userStore = useUserStore();
             bg-color="white"
         ></v-select>
 
-        <div class="mt-6 d-flex justify-space-around">
-            <v-btn class="me-auto" type="button"> Previous </v-btn>
+        <div class="mt-6 d-flex justify-end">
             <v-btn type="submit"> Next </v-btn>
         </div>
     </form>

@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/yup";
 import { object, string } from "yup";
+import { useStepperStore } from "./stepper";
 
 export const useUserStore = defineStore("user", () => {
     const schema = toTypedSchema(
@@ -22,8 +23,10 @@ export const useUserStore = defineStore("user", () => {
     const [firstName, firstNameAttrs] = defineField("firstName");
     const [lastName, lastNameAttrs] = defineField("lastName");
 
-    const onSubmit = handleSubmit((values) => {
-        // console.log(JSON.stringify(values, null, 2));
+    const stepperStore = useStepperStore();
+
+    const onSubmit = handleSubmit((v) => {
+        stepperStore.next();
     });
 
     return {
