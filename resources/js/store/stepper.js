@@ -56,6 +56,11 @@ export const useStepperStore = defineStore("stepper", () => {
         return resultObject;
     }
 
+    function resetStepper() {
+        step.value = 1;
+        errors.value = {};
+    }
+
     function submit() {
         const userValid = Object.keys(userStore.errors).length <= 0;
         const contactValid = Object.keys(contactStore.errors).length <= 0;
@@ -66,6 +71,13 @@ export const useStepperStore = defineStore("stepper", () => {
             const payload = mergeObjects();
 
             router.post("/stepper", payload, {
+                onSuccess: (s) => {
+                    resetStepper();
+                    userStore.resetForm();
+                    contactStore.resetForm();
+                    businessStore.resetForm();
+                    accountStore.resetForm();
+                },
                 onError: (e) => {
                     errors.value = e;
                 },

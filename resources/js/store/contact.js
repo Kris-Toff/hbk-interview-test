@@ -18,7 +18,7 @@ export const useContactStore = defineStore("contact", () => {
         })
     );
 
-    const { errors, defineField, handleSubmit, values } = useForm({
+    const { errors, defineField, handleSubmit, values, resetForm } = useForm({
         validationSchema: schema,
     });
 
@@ -42,6 +42,7 @@ export const useContactStore = defineStore("contact", () => {
         phoneNumberAttrs,
         values,
         errors,
+        resetForm,
         handlePrevious,
         onSubmit,
     };

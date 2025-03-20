@@ -21,6 +21,8 @@ const message = computed(() => page.props.flash.message);
             :text="message"
             title="Saved"
             type="success"
+            class="mb-6"
+            closable
         ></v-alert>
         <form @submit.prevent="userStore.onSubmit">
             <user-form />
